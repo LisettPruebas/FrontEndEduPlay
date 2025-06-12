@@ -6,6 +6,6 @@ body, html {
   overflow: hidden;
 }
 
-* {
-  outline: 1px solid red;
+.navbar-custom {
+  background-color: #9D6BCE !important;
 }
