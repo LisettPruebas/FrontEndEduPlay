@@ -1,5 +1,4 @@
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.footer-purple {
+  background-color: #9D6BCE;
+  color: white;
 }
