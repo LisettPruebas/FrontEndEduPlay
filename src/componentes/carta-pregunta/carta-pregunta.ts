@@ -44,10 +44,10 @@ export class CartaPreguntaComponent implements OnInit {
 
       if(this.esCorrecta){
         this.contadorCorrectas++;
-        this.mensajeFeedback = '¡Correcto!'
+        this.mensajeFeedback = 'Correcta'
 
       }else{
-        this.mensajeFeedback = 'Sigue intentando...'
+        this.mensajeFeedback = 'Incorrecta'
       }
 
       if(this.contadorTotal == 5){
