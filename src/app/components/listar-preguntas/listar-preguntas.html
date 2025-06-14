@@ -1,0 +1,86 @@
+<div class="container py-4">
+
+  <div class="row">
+    <!-- Formulario -->
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title mb-4">Crear Nueva Pregunta</h3>
+          <form (ngSubmit)="crearPregunta()" #formPregunta="ngForm">
+            
+            <div class="mb-3">
+              <label for="pregunta" class="form-label">Pregunta</label>
+              <input
+                id="pregunta"
+                name="pregunta"
+                type="text"
+                class="form-control"
+                [(ngModel)]="nuevaPregunta.pregunta"
+                required
+                placeholder="Escribe tu pregunta"
+              />
+            </div>
+
+            <div class="mb-3" *ngFor="let opt of nuevaPregunta.opciones; let i = index">
+              <label [for]="'opcion' + i" class="form-label">Opción {{ i + 1 }}</label>
+              <input
+                [id]="'opcion' + i"
+                [name]="'opcion' + i"
+                [(ngModel)]="nuevaPregunta.opciones[i]"
+                type="text"
+                class="form-control"
+                required
+                placeholder="Escribe una opción"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="respuestaCorrecta" class="form-label">Respuesta Correcta</label>
+              <input
+                id="respuestaCorrecta"
+                name="respuestaCorrecta"
+                type="text"
+                class="form-control"
+                [(ngModel)]="nuevaPregunta.respuestaCorrecta"
+                required
+                placeholder="Debe coincidir con una de las opciones"
+              />
+              <div class="form-text">
+                Debe coincidir exactamente con una de las opciones.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+              <i class="bi bi-plus-circle me-2"></i>Crear Pregunta
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listado -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title mb-3">Listado de Preguntas</h3>
+          <div *ngIf="preguntas.length === 0" class="text-muted">No hay preguntas cargadas.</div>
+
+          <ul class="list-group" *ngIf="preguntas.length > 0">
+            <li *ngFor="let p of preguntas" class="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row gap-2">
+              <div class="flex-grow-1">
+                <strong>{{ p.pregunta }}</strong>
+                <div><small>Opciones:</small> {{ p.opciones.join(', ') }}</div>
+                <div><small>Respuesta:</small> {{ p.respuestaCorrecta }}</div>
+              </div>
+              <button (click)="eliminar(p.id!)" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-trash"></i> Eliminar
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

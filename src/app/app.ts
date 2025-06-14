@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-
-import { Preguntas } from './preguntas/preguntas/pregurtasAdmin';
+import { ListarPreguntas } from "./components/listar-preguntas/listar-preguntas";
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ Preguntas],
+  imports: [ListarPreguntas,HttpClientModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css'] 
 })
