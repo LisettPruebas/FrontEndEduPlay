@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pregunta } from '../../app/modelos/pregunta.model.js';
+import { PuntosResultado } from '../../app/modelos/puntosResultado.model.js';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class CartaPreguntaComponent implements OnInit {
   esCorrecta: boolean = false;
   contadorCorrectas: number = 0;
   contadorTotal: number = 0;
+  resultado! : PuntosResultado;
 
   ngOnInit(): void {
     this.obtenerPregunta();
@@ -60,6 +62,23 @@ export class CartaPreguntaComponent implements OnInit {
         this.respuestaUsuario = '';
       }, 2000)
       
+  }
+
+   async enviarPuntos(): Promise<void> {
+    try {
+      const response = await fetch('http://localhost:3000/pregunta/puntuacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ puntos: this.contadorCorrectas * 10 }), 
+      });
+
+      this.resultado = await response.json();
+      console.log('puntos:', this.resultado.puntaje);
+    } catch (error) {
+      console.error('Error al guardar los puntos:', error);
+    }
   }
 
 }
