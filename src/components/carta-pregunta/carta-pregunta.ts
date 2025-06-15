@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Pregunta } from '../../app/modelos/pregunta.model.js';
-import { PuntosResultado } from '../../app/modelos/puntosResultado.model.js';
+import { Pregunta } from '../../app/modelos/pregunta.model';
+import { PuntosResultado } from '../../app/modelos/puntosResultado.model';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class CartaPreguntaComponent implements OnInit {
   contadorCorrectas: number = 0;
   contadorTotal: number = 0;
   resultado! : PuntosResultado;
+  puntosTotales: number = 0;
 
   ngOnInit(): void {
     this.obtenerPregunta();
@@ -40,33 +41,37 @@ export class CartaPreguntaComponent implements OnInit {
   }
 
   verificarRespuesta(opcion: string): void {
-    this.contadorTotal++;
-    this.respuestaUsuario = opcion;
-    this.esCorrecta = opcion === this.pregunta.respuestaCorrecta;
+  this.contadorTotal++;
+  this.respuestaUsuario = opcion;
+  this.esCorrecta = opcion === this.pregunta.respuestaCorrecta;
 
-      if(this.esCorrecta){
-        this.contadorCorrectas++;
-        this.mensajeFeedback = 'Correcta'
-
-      }else{
-        this.mensajeFeedback = 'Incorrecta'
-      }
-
-      if(this.contadorTotal == 10){
-        return 
-      }
-
-      setTimeout( () => {
-        this.obtenerPregunta();
-        this.mensajeFeedback = '';
-        this.respuestaUsuario = '';
-      }, 2000)
-      
+  if (this.esCorrecta) {
+    this.contadorCorrectas++;
+    this.puntosTotales += 10; 
+    this.mensajeFeedback = 'Correcta';
+    console.log(this.puntosTotales)
+  } else {
+    this.mensajeFeedback = 'Incorrecta';
   }
 
+ 
+  if (this.contadorTotal === 10) {
+    this.enviarPuntos(); 
+    return;
+  }
+
+  setTimeout(() => {
+    this.obtenerPregunta();
+    this.mensajeFeedback = '';
+    this.respuestaUsuario = '';
+  }, 2000);
+}
+
+
+  
    async enviarPuntos(): Promise<void> {
     try {
-      const response = await fetch('http://localhost:3000/pregunta/puntuacion', {
+      const response = await fetch('http://localhost:3000/score/score', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,44 +92,3 @@ export class CartaPreguntaComponent implements OnInit {
 
 
 
-/*import { Component, OnInit } from '@angular/core';
-import { Pregunta } from '../../app/modelos/pregunta.model.js';
-
-@Component({
-  selector: 'app-carta-pregunta',
-  templateUrl: './carta-pregunta.html',
-  styleUrls: ['./carta-pregunta.css']
-})
-
-export class CartaPreguntaComponent implements OnInit {
-
-  pregunta!: Pregunta
-
-  ngOnInit(): void {
-    this.obtenerPregunta();
-  }
-
-  async obtenerPregunta(): Promise<void> {
-    try {
-      const response = await fetch('http://localhost:3000/pregunta/traer');
-      this.pregunta = await response.json();
-      console.log('Pregunta:', this.pregunta);
-    } catch (error) {
-      console.error('Error al obtener la pregunta:', error);
-    }
-  }*/
-
-/*export class CartaPreguntaComponent implements OnInit {
-
-  pregunta!: Pregunta;
-
-  ngOnInit(): void {
-    this.obtenerPregunta();
-  }
-
-  async obtenerPregunta(): Promise<void> {
-    const response = await fetch('http://localhost:3000/pregunta/traer');
-    this.pregunta = await response.json();
-    console.log('Pregunta:', this.pregunta);
-  }
-}*/
