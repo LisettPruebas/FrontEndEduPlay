@@ -15,6 +15,7 @@ export class LoginComponent {
 
   username:string = '';
   password:string = '';
+  mensaje :string | null = null;
 
   constructor(
     private loginService: LoginService,
@@ -24,13 +25,11 @@ export class LoginComponent {
   onSubmit(){
     const credenciales = {username: this.username, password:this.password};
     this.loginService.login(credenciales).subscribe( response => {
-      console.log("login exitoso", response)
       alert(`hola ${this.username}`)
       window.location.href = 'https://www.google.com';
     },
     error =>{
-      alert(`${error.error.error}`)
-     console.log("error al iniciar sesion", error) 
+      this.mensaje = error.error.error;
     })
   }
 }
