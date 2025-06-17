@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CartaPreguntaComponent } from "../components/carta-pregunta/carta-pregunta";
+import { CartaPreguntaComponent } from "./carta-pregunta/carta-pregunta";
 
 @Component({
   selector: 'app-root',

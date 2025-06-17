@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Pregunta } from '../../app/modelos/pregunta.model';
-import { PuntosResultado } from '../../app/modelos/puntosResultado.model';
+import { Pregunta } from '../modelos/pregunta.model';
+import { PuntosResultado } from '../modelos/puntosResultado.model';
 
 
 @Component({
