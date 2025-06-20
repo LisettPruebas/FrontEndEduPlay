@@ -1,3 +1,8 @@
+body{
+  /*Esto no funciona*/
+  background-color: #F7EB33 !important;
+}
+
 .card {
   background-color: #fff;
   border: 2px solid #ddd;
