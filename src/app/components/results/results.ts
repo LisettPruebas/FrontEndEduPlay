@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-results',
   standalone: true,
   imports: [],
-  templateUrl: './results.html',
+  templateUrl: './results.html',  
   styleUrl: './results.css'
 })
 export class Results {

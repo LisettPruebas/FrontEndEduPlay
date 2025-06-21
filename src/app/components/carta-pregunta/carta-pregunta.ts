@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pregunta } from '../../modelos/pregunta.model';
 import { PuntosResultado } from '../../modelos/puntosResultado.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,8 @@ import { PuntosResultado } from '../../modelos/puntosResultado.model';
 
 export class CartaPreguntaComponent implements OnInit {
 
+  constructor(private router: Router) {}
+  
   pregunta!: Pregunta;
 
   respuestaUsuario: string = '';
@@ -26,8 +29,8 @@ export class CartaPreguntaComponent implements OnInit {
   puntosTotales: number = 0;
 
   ngOnInit(): void {
+    document.body.style.backgroundColor = '#F7EB33';
     this.obtenerPregunta();
-    
   }
 
   async obtenerPregunta(): Promise<void> {
@@ -40,7 +43,7 @@ export class CartaPreguntaComponent implements OnInit {
     }
   }
 
-  verificarRespuesta(opcion: string): void {
+  async verificarRespuesta(opcion: string):Promise<void> {
   this.contadorTotal++;
   this.respuestaUsuario = opcion;
   this.esCorrecta = opcion === this.pregunta.respuestaCorrecta;
@@ -56,7 +59,9 @@ export class CartaPreguntaComponent implements OnInit {
 
  
   if (this.contadorTotal === 10) {
-    this.enviarPuntos(); 
+    let res = await this.enviarPuntos(); 
+    if (res) {
+      this.router.navigate(['/resultados'])}
     return;
   }
 
@@ -64,14 +69,15 @@ export class CartaPreguntaComponent implements OnInit {
     this.obtenerPregunta();
     this.mensajeFeedback = '';
     this.respuestaUsuario = '';
-  }, 2000);
+  }, 500);
 }
 
 
   
-   async enviarPuntos(): Promise<void> {
+   async enviarPuntos(): Promise<Boolean> {
+    let res : Boolean = false;
     try {
-      const response = await fetch('http://localhost:3000/score/score', {
+      const response = await fetch('http://localhost:3000/pregunta/puntuacion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,9 +86,14 @@ export class CartaPreguntaComponent implements OnInit {
       });
 
       this.resultado = await response.json();
+      res = true;
       console.log('puntos:', this.resultado.puntaje);
+
     } catch (error) {
       console.error('Error al guardar los puntos:', error);
+    }
+    finally {
+      return res;
     }
   }
 
