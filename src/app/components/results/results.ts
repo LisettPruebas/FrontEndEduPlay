@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Puntaje } from '../../services/puntaje/puntaje';
 
 @Component({
   selector: 'app-results',
@@ -8,10 +9,14 @@ import { Router } from '@angular/router';
   templateUrl: './results.html',  
   styleUrl: './results.css'
 })
-export class Results {
+export class Results implements OnInit {
+  puntos: number = 0
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private puntajeservice: Puntaje) {}
 
+  ngOnInit(): void {
+    this.puntos = this.puntajeservice.getPuntaje()
+  }
   playAgain() {
     // Redirige al inicio del juego
     this.router.navigate(['/game']);
