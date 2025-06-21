@@ -26,7 +26,7 @@ export class LoginComponent {
     const credenciales = {username: this.username, password:this.password};
     this.loginService.login(credenciales).subscribe( response => {
       alert(`hola ${this.username}`)
-      window.location.href = 'https://www.google.com';
+      this.router.navigate(['/admin']);
     },
     error =>{
       this.mensaje = error.error.error;
