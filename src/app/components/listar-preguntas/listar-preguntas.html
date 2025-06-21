@@ -1,0 +1,41 @@
+<form [formGroup]="formulario" (ngSubmit)="crearPregunta()">
+  <div class="mb-3">
+    <label for="pregunta" class="form-label">Pregunta</label>
+    <input
+      id="pregunta"
+      type="text"
+      class="form-control"
+      formControlName="pregunta"
+      placeholder="Escribe la pregunta"
+      required
+    />
+  </div>
+
+  <div formArrayName="opciones">
+    <div *ngFor="let opcionCtrl of opciones.controls; let i = index" class="mb-3">
+      <label [for]="'opcion' + i" class="form-label">Opción {{ i + 1 }}</label>
+      <input
+        [id]="'opcion' + i"
+        type="text"
+        class="form-control"
+        [formControlName]="i"
+        placeholder="Escribe una opción"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="respuestaCorrecta" class="form-label">Respuesta Correcta</label>
+    <input
+      id="respuestaCorrecta"
+      type="text"
+      class="form-control"
+      formControlName="respuestaCorrecta"
+      placeholder="Escribe la respuesta correcta"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Crear Pregunta</button>
+</form>
