@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 // Define la estructura de una pregunta
 export interface Pregunta {
-  id?: number;
+  _id?: string;
   pregunta: string;
   opciones: string[];
   respuestaCorrecta: string;
@@ -26,7 +26,7 @@ export class PreguntasService {
     return this.http.post(`${this.baseUrl}/crear`, pregunta); 
   }
 
-  eliminarPregunta(id: number): Observable<any> {
+  eliminarPregunta(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }
