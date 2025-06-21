@@ -6,9 +6,6 @@ import { Results } from './components/results/results';
 import { ListarPreguntas } from './components/listar-preguntas/listar-preguntas';
 
 export const routes: Routes = [
-   
-=======
-export const routes: Routes = [
     {path:'',component:Home},
     {path:"login",component: LoginComponent},
     {path: "preguntas", component: CartaPreguntaComponent},
