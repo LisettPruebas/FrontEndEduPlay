@@ -1,0 +1,24 @@
+<div class="fullscreen-container">
+    <div class="login-box">
+        <div class="logo">
+            <img src="/logo.png">
+        </div>
+        <h3 class="h3">Inicio de sesion</h3>
+
+        <form (ngSubmit)="onSubmit()">
+            <div class="input form-floating py-2">
+                <input type="text" class="form-control" placeholder="" name="username" [(ngModel)]="username" required>
+                <label>Usuario</label>
+            </div>
+            <div class="input form-floating py-2">
+                <input type="password" class="form-control" placeholder="" name="password" [(ngModel)]="password"
+                    required>
+                <label>Contraseña</label>
+            </div>
+            <p *ngIf="mensaje" style="color: red;">
+                {{ mensaje }}
+            </p>
+            <button class="btn btn-danger w-100 py-2" type="submit">Iniciar sesion</button>
+        </form>
+    </div>
+</div>
