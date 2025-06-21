@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Pregunta } from '../../modelos/pregunta.model';
 import { PuntosResultado } from '../../modelos/puntosResultado.model';
 import { Router } from '@angular/router';
+import { Puntaje } from '../../services/puntaje/puntaje';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 
 export class CartaPreguntaComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private puntajeservices: Puntaje) {}
   
   pregunta!: Pregunta;
 
@@ -61,6 +62,7 @@ export class CartaPreguntaComponent implements OnInit {
   if (this.contadorTotal === 10) {
     let res = await this.enviarPuntos(); 
     if (res) {
+      this.puntajeservices.setpuntaje(this.puntosTotales)
       this.router.navigate(['/resultados'])}
     return;
   }
