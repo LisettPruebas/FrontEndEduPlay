@@ -1,11 +1,13 @@
-<div class="nombre-container">
-  <label for="nombre">Nombre del participante:</label>
-  <br>
+<div class="mb-3">
+  <label for="nombre" class="form-label label-violeta">
+    <i class="bi bi-person-fill me-2"></i>Nombre del participante:
+  </label>
   <input
     type="text"
     id="nombre"
+    class="form-control"
     [(ngModel)]="nombre"
-  (ngModelChange)="guardarNombre(nombre)"
+    (ngModelChange)="guardarNombre(nombre)"
     placeholder="Tu nombre"
   />
 </div>

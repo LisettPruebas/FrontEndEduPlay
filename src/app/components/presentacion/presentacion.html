@@ -1,0 +1,34 @@
+<div class="container py-5">
+
+  <!-- Título principal -->
+  <h1 class="text-center mb-5 titulo-violeta">Bienvenidos a EduPlay</h1>
+
+
+  <!-- Sección: Sobre el juego -->
+  <section class="mb-5">
+    <h2 class="text-secondary mb-3">¿De qué trata el juego?</h2>
+    <p class="lead">
+      EduPlay es un juego educativo tipo trivia pensado para aprender jugando.
+      Vas a poder responder preguntas de distintas materias, ganar puntos y competir con amigos.
+      Está diseñado para estudiantes de todas las edades que quieran divertirse mientras aprenden.
+    </p>
+  </section>
+
+  <!-- Sección: Quiénes somos -->
+  <section>
+    <h2 class="text-secondary mb-3">¿Quiénes somos?</h2>
+    <p class="lead">
+      Somos un equipo de 4 estudiantes apasionados por la tecnología y la educación. Creamos EduPlay como proyecto final,
+      combinando nuestras habilidades en programación, diseño y contenido pedagógico.
+    </p>
+
+    <div class="row mt-4">
+      <div class="col-md-3 text-center" *ngFor="let integrante of integrantes">
+        <img [src]="integrante.foto" alt="{{ integrante.nombre }}" class="rounded-circle mb-2" width="120" height="120">
+        <h5 class="fw-semibold">{{ integrante.nombre }}</h5>
+        <p class="text-muted">{{ integrante.rol }}</p>
+      </div>
+    </div>
+  </section>
+
+</div>
