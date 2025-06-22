@@ -25,27 +25,34 @@ export class CartaPreguntaComponent implements OnInit {
   mensajeFeedback: string = '';
   esCorrecta: boolean = false;
   contadorCorrectas: number = 0;
-  contadorTotal: number = 0;
+  contadorTotal: number = 1;
   resultado! : PuntosResultado;
   puntosTotales: number = 0;
 
   ngOnInit(): void {
-    document.body.style.backgroundColor = '#F7EB33';
+    
     this.obtenerPregunta();
   }
 
-  async obtenerPregunta(): Promise<void> {
+  async obtenerPregunta(): Promise<boolean> {
+    let res: boolean = false;
     try {
       const response = await fetch('http://localhost:3000/pregunta/traer');
       this.pregunta = await response.json();
       console.log('Pregunta:', this.pregunta);
+      res = true;
     } catch (error) {
       console.error('Error al obtener la pregunta:', error);
+    }
+    finally{
+      return res;
     }
   }
 
   async verificarRespuesta(opcion: string):Promise<void> {
-  this.contadorTotal++;
+    if(this.contadorTotal <= 9){
+      this.contadorTotal++;
+    }
   this.respuestaUsuario = opcion;
   this.esCorrecta = opcion === this.pregunta.respuestaCorrecta;
 
@@ -63,12 +70,15 @@ export class CartaPreguntaComponent implements OnInit {
     let res = await this.enviarPuntos(); 
     if (res) {
       this.puntajeservices.setpuntaje(this.puntosTotales)
-      this.router.navigate(['/resultados'])}
+      setTimeout(() => {
+        this.router.navigate(['/resultados'])
+      }, 2000)
+    }
     return;
   }
 
-  setTimeout(() => {
-    this.obtenerPregunta();
+  setTimeout( async () => {
+     await this.obtenerPregunta();
     this.mensajeFeedback = '';
     this.respuestaUsuario = '';
   }, 500);
