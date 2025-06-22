@@ -5,6 +5,7 @@ import { CartaPreguntaComponent } from './components/carta-pregunta/carta-pregun
 import { Results } from './components/results/results';
 import { ListarPreguntas } from './components/listar-preguntas/listar-preguntas';
 import { AdminGuard } from './services/auth/admin.guard';
+import { Presentacion } from './components/presentacion/presentacion';
 
 export const routes: Routes = [
     {path:'',component:Home},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path: "preguntas", component: CartaPreguntaComponent},
     {path: "resultados", component: Results},
     {path: "admin", component: ListarPreguntas},
+     {path: "presentacion", component: Presentacion},
     {path: 'admin', component: ListarPreguntas, canActivate: [AdminGuard] }
 ];
