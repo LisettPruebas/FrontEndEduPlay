@@ -1,0 +1,19 @@
+<div class="ranking-container">
+
+  <h1>Ranking de Puntajes</h1>
+  
+  <div class="tabla-ranking">
+    <div class="encabezado">
+      <div class="col">Puesto</div>
+      <div class="col">Nombre</div>
+      <div class="col">Puntaje</div>
+    </div>
+
+    <div class="fila" *ngFor="let jugador of puntajes; let i = index">
+      <div class="col">{{ i + 1 }}</div>
+      <div class="col">{{ jugador.nombre }}</div>
+      <div class="col">{{ jugador.puntos }}</div>
+    </div>
+
+  </div>
+</div>
