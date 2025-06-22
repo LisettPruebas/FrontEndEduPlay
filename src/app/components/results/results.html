@@ -2,7 +2,7 @@
   <img src="fondo.jpg" alt="Fondo" class="fondo-imagen" />
 
   <div class="results-container">
-    <h1>¡Felicidades Juan!</h1>
+    <h1>¡Felicidades {{nombre}}!</h1>
     <p class="message">
       Has completado el juego con una puntuación impresionante.<br />
       ¡Tu conocimiento brilla con fuerza!
@@ -15,8 +15,8 @@
 
     <div class="buttons">
       <!-- <button (click)="playAgain()">Jugar de nuevo</button> -->
-      <button type="button" class="btn btn-purple btn-lg mt-4">Jugar de nuevo</button>
-      <button type="button" class="btn btn-purple btn-lg mt-4">Salir del Juego</button>
+      <button type="button" (click)="playAgain()" class="btn btn-purple btn-lg mt-4">Jugar de nuevo</button>
+      <button type="button" (click)="exitGame() " class="btn btn-purple btn-lg mt-4">Salir del Juego</button>
       <!-- <button (click)="exitGame()">Salir del juego</button> -->
     </div>
   </div>

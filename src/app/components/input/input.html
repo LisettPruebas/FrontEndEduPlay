@@ -1,0 +1,11 @@
+<div class="nombre-container">
+  <label for="nombre">Nombre del participante:</label>
+  <br>
+  <input
+    type="text"
+    id="nombre"
+    [(ngModel)]="nombre"
+  (ngModelChange)="guardarNombre(nombre)"
+    placeholder="Tu nombre"
+  />
+</div>

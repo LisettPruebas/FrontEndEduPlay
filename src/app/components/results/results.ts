@@ -11,20 +11,22 @@ import { Puntaje } from '../../services/puntaje/puntaje';
 })
 export class Results implements OnInit {
   puntos: number = 0
+  nombre: string = '';
 
   constructor(private router: Router, private puntajeservice: Puntaje) {}
 
   ngOnInit(): void {
     this.puntos = this.puntajeservice.getPuntaje()
+    this.nombre = this.puntajeservice.getNombreJugador();
   }
   playAgain() {
     // Redirige al inicio del juego
-    this.router.navigate(['/game']);
+    this.router.navigate(['/preguntas']);
   }
 
    exitGame() {
     // Redirige a la pantalla de inicio o salir de la app
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 
 }

@@ -84,7 +84,9 @@ export class CartaPreguntaComponent implements OnInit {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ puntos: this.contadorCorrectas * 10 }), 
+        body: JSON.stringify({ puntos: this.contadorCorrectas * 10,
+          nombre: this.puntajeservices.getNombreJugador()
+         }), 
       });
 
       this.resultado = await response.json();
