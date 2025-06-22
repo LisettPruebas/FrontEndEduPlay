@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  background-color: #eee567;
+  min-height: 100vh;
+  padding-top: 1px;
+}
+
+h2 {
+  font-weight: 600;
+  color: #9D6BCE; /* Violeta personalizado */
+}
+
+img.rounded-circle {
+  object-fit: cover;
+  border: 3px solid #9D6BCE;
+}
+
+.titulo-violeta {
+  color: #9D6BCE;
+  font-weight: 700;
+}
