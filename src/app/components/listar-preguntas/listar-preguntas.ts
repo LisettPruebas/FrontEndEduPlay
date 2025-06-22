@@ -12,9 +12,12 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Va
   styleUrls: ['./listar-preguntas.css']
 })
 export class ListarPreguntas implements OnInit {
+
   preguntas: Pregunta[] = [];
 
   formulario!: FormGroup;
+
+  preguntaEnEdicion: Pregunta | null = null;
 
   constructor(private preguntasService: PreguntasService, private fb: FormBuilder) {}
 
@@ -72,7 +75,7 @@ export class ListarPreguntas implements OnInit {
       respuestaCorrecta: this.formulario.value.respuestaCorrecta
     };
 
-    // Validaciones extras (opcional)
+    // Validaciones extras 
     const opcionesValidas = nuevaPregunta.opciones.every(opt => opt.trim() !== '');
     if (!opcionesValidas) {
       alert('Todas las opciones deben estar completas');
@@ -93,23 +96,47 @@ export class ListarPreguntas implements OnInit {
       return;
     }
 
-    this.preguntasService.crearPregunta(nuevaPregunta).subscribe({
-      next: () => {
-        alert('Pregunta creada con éxito');
-        this.formulario.reset();
-        // Reiniciar opciones para que tengan 4 controles vacíos
-        while (this.opciones.length) {
-          this.opciones.removeAt(0);
+    const peticion = this.preguntaEnEdicion && this.preguntaEnEdicion._id
+    ? this.preguntasService.actualizarPregunta(this.preguntaEnEdicion._id, nuevaPregunta)
+    : this.preguntasService.crearPregunta(nuevaPregunta);
+
+    peticion.subscribe({
+      next: (res) => {
+        alert(this.preguntaEnEdicion ? 'Pregunta actualizada' : 'Pregunta creada');
+
+        if (this.preguntaEnEdicion) {
+          // Actualizar en memoria
+          const index = this.preguntas.findIndex(p => p._id === this.preguntaEnEdicion!._id);
+          if (index !== -1) {
+            this.preguntas[index] = { ...this.preguntaEnEdicion, ...nuevaPregunta };
+          }
+        } else {
+          // Agregar nueva pregunta al arreglo
+          this.preguntas.push(res);
         }
-        for (let i = 0; i < 4; i++) {
-          this.opciones.push(this.fb.control('', Validators.required));
-        }
+
+        this.resetFormulario();
       },
       error: (err) => {
-        console.error('Error al crear pregunta', err);
-        alert('Error al crear la pregunta');
+        console.error('Error al guardar', err);
+        alert('Error al guardar la pregunta');
       }
     });
+  }
+
+   editarPregunta(pregunta: Pregunta) {
+    this.preguntaEnEdicion = pregunta;
+
+    this.formulario.patchValue({
+      pregunta: pregunta.pregunta,
+      respuestaCorrecta: pregunta.respuestaCorrecta
+    });
+
+    // Limpiar y cargar opciones
+    while (this.opciones.length) this.opciones.removeAt(0);
+    for (const opcion of pregunta.opciones) {
+      this.opciones.push(this.fb.control(opcion, Validators.required));
+    }
   }
 
   eliminar(id?: string) {
@@ -130,4 +157,16 @@ export class ListarPreguntas implements OnInit {
       });
     }
   }
+
+  resetFormulario() {
+   this.formulario.reset();
+   this.preguntaEnEdicion = null;
+
+    // Reiniciar 4 opciones vacías
+   while (this.opciones.length) this.opciones.removeAt(0);
+   for (let i = 0; i < 4; i++) {
+      this.opciones.push(this.fb.control('', Validators.required));
+    }
+  }
+
 }

@@ -19,4 +19,8 @@ constructor(public auth: Auth, private router: Router) {}
     this.auth.logout();
     this.router.navigate(['/login']);
   }
+  
+  esAdmin(): boolean {
+  return this.auth.isLoggedIn() && this.auth.getUser() === 'admin';
+ }
 }
