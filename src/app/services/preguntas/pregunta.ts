@@ -30,4 +30,9 @@ export class PreguntasService {
   eliminarPregunta(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  actualizarPregunta(id: string, pregunta: Pregunta): Observable<any> {
+  return this.http.put(`${this.baseUrl}/${id}`, pregunta);
+}
+
 }
