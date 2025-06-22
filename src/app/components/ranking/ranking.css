@@ -1,0 +1,51 @@
+.ranking-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.tabla-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.encabezado, .fila {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.encabezado {
+  font-weight: bold;
+  background-color: #ddd;
+}
+
+.fila:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.col {
+  text-align: center;
+}
+
+/* Responsive para móvil */
+@media (max-width: 480px) {
+  .encabezado, .fila {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
