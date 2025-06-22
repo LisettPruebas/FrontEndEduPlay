@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/auth/login-service';
 import { RouterLink, Router } from '@angular/router';
+import { Auth } from '../../services/auth/auth';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,17 @@ export class LoginComponent {
   password:string = '';
   mensaje :string | null = null;
 
+
   constructor(
     private loginService: LoginService,
+    private auth: Auth,
     private router: Router
   ){}
 
   onSubmit(){
     const credenciales = {username: this.username, password:this.password};
     this.loginService.login(credenciales).subscribe( response => {
+      this.auth.setLoginState(this.username);
       alert(`hola ${this.username}`)
       this.router.navigate(['/admin']);
     },
