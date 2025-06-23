@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class Puntaje {
 
   private puntosTotales: number = 0;
-  private nombreJugador: string = '';
+  private nombreJugador: string = 'anonimo';
 
   setpuntaje(puntos:number): void{
     this.puntosTotales = puntos
@@ -17,7 +17,7 @@ export class Puntaje {
   }
 
   setNombreJugador(nombre: string): void {
-    this.nombreJugador = nombre;
+    this.nombreJugador = nombre.trim() || 'anonimo';
   }
   getNombreJugador(): string {
     return this.nombreJugador;
