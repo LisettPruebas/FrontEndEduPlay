@@ -50,9 +50,7 @@ export class CartaPreguntaComponent implements OnInit {
   }
 
   async verificarRespuesta(opcion: string):Promise<void> {
-    if(this.contadorTotal <= 9){
-      this.contadorTotal++;
-    }
+   
   this.respuestaUsuario = opcion;
   this.esCorrecta = opcion === this.pregunta.respuestaCorrecta;
 
@@ -76,6 +74,10 @@ export class CartaPreguntaComponent implements OnInit {
     }
     return;
   }
+   
+   if(this.contadorTotal <= 9){
+      this.contadorTotal++;
+    }
 
   setTimeout( async () => {
      await this.obtenerPregunta();
