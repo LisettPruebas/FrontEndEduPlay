@@ -1,6 +1,5 @@
 <div class="contenedor-principal">
 
-  <!-- 🟩 Formulario de creación/edición -->
   <form [formGroup]="formulario" (ngSubmit)="crearPregunta()" class="formulario">
     <h3>{{ preguntaEnEdicion ? 'Editar Pregunta' : 'Crear Pregunta' }}</h3>
 
@@ -29,7 +28,6 @@
     </button>
   </form>
 
-  <!-- 🟦 Listado de preguntas -->
   <div class="listado-preguntas">
     <h4 class="mt-4">Preguntas guardadas</h4>
     <div *ngFor="let pregunta of preguntas" class="card mb-3">

@@ -24,7 +24,6 @@ export class ListarPreguntas implements OnInit {
   ngOnInit(): void {
     this.obtenerPreguntas();
 
-    // Inicializamos el formulario con 4 controles de opción
     this.formulario = this.fb.group({
       pregunta: ['', Validators.required],
       opciones: this.fb.array([
@@ -75,7 +74,6 @@ export class ListarPreguntas implements OnInit {
       respuestaCorrecta: this.formulario.value.respuestaCorrecta
     };
 
-    // Validaciones extras 
     const opcionesValidas = nuevaPregunta.opciones.every(opt => opt.trim() !== '');
     if (!opcionesValidas) {
       alert('Todas las opciones deben estar completas');
@@ -105,13 +103,11 @@ export class ListarPreguntas implements OnInit {
         alert(this.preguntaEnEdicion ? 'Pregunta actualizada' : 'Pregunta creada');
 
         if (this.preguntaEnEdicion) {
-          // Actualizar en memoria
           const index = this.preguntas.findIndex(p => p._id === this.preguntaEnEdicion!._id);
           if (index !== -1) {
             this.preguntas[index] = { ...this.preguntaEnEdicion, ...nuevaPregunta };
           }
         } else {
-          // Agregar nueva pregunta al arreglo
           this.preguntas.push(res);
         }
 
@@ -132,7 +128,6 @@ export class ListarPreguntas implements OnInit {
       respuestaCorrecta: pregunta.respuestaCorrecta
     });
 
-    // Limpiar y cargar opciones
     while (this.opciones.length) this.opciones.removeAt(0);
     for (const opcion of pregunta.opciones) {
       this.opciones.push(this.fb.control(opcion, Validators.required));
@@ -162,7 +157,6 @@ export class ListarPreguntas implements OnInit {
    this.formulario.reset();
    this.preguntaEnEdicion = null;
 
-    // Reiniciar 4 opciones vacías
    while (this.opciones.length) this.opciones.removeAt(0);
    for (let i = 0; i < 4; i++) {
       this.opciones.push(this.fb.control('', Validators.required));

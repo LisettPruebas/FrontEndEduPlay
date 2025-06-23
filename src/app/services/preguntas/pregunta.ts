@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Define la estructura de una pregunta
 export interface Pregunta {
   _id?: string;
   pregunta: string;

@@ -20,12 +20,10 @@ export class Results implements OnInit {
     this.nombre = this.puntajeservice.getNombreJugador();
   }
   playAgain() {
-    // Redirige al inicio del juego
     this.router.navigate(['/preguntas']);
   }
 
    exitGame() {
-    // Redirige a la pantalla de inicio o salir de la app
     this.router.navigate(['']);
   }
 

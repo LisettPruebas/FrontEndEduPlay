@@ -112,7 +112,6 @@ export class CartaPreguntaComponent implements OnInit {
       return res;
     }
   }
-
 }
 
 

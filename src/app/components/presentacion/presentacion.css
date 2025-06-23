@@ -1,13 +1,13 @@
 :host {
   display: block;
-  background-color: #eee567;
+  background-color: #F7EB33;
   min-height: 100vh;
   padding-top: 1px;
 }
 
 h2 {
   font-weight: 600;
-  color: #9D6BCE; /* Violeta personalizado */
+  color: #9D6BCE; 
 }
 
 img.rounded-circle {

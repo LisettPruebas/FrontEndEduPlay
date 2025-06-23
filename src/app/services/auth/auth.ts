@@ -27,6 +27,5 @@ logout() {
 getUser() : string | null {
   return this.user;
 }
-
   constructor() { }
 }
