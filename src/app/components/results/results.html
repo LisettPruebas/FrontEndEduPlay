@@ -1,0 +1,24 @@
+<div class="pantalla-inicio">
+  <img src="fondo.jpg" alt="Fondo" class="fondo-imagen" />
+
+  <div class="results-container">
+    <h1>¡Felicidades {{nombre}}!</h1>
+    <p class="message">
+      Has completado el juego con una puntuación impresionante.<br />
+      ¡Tu conocimiento brilla con fuerza!
+    </p>
+
+    <div class="score-box">
+      <h2>Puntuación Final</h2>
+      <p class="final-score">{{puntos}}</p>
+    </div>
+
+    <div class="buttons">
+      <button type="button" (click)="playAgain()" class="btn btn-purple btn-lg mt-4">Jugar de nuevo</button>
+      <button type="button" (click)="exitGame() " class="btn btn-purple btn-lg mt-4">Salir del Juego</button>
+    </div>
+  </div>
+
+</div>
+
+

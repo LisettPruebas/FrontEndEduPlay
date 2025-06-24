@@ -1,0 +1,43 @@
+.contenido-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px); 
+  z-index: 2;
+  position: relative;
+  padding-top: 50px;
+}
+
+/*cambio color boton*/
+.btn-purple {
+  background-color: #9D6BCE;
+  border-color: #9D6BCE;
+  color: white;
+}
+
+.btn-purple:hover {
+  background-color: #7a4ea0;
+  border-color: #7a4ea0;
+  color: white;
+}
+
+.logo-container {
+  background: white;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.logo-container img {
+  width: 250px;       
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
