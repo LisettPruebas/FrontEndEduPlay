@@ -1,6 +1,6 @@
 <div class="ranking-container">
 
-  <h1>Ranking de Puntajes</h1>
+  <h1 class="text-secondary mb-3">Ranking de Puntajes</h1>
   
   <div class="tabla-ranking">
     <div class="encabezado">
@@ -14,6 +14,8 @@
       <div class="col">{{ jugador.nombre }}</div>
       <div class="col">{{ jugador.puntos }}</div>
     </div>
-
+    <h4  *ngIf="puntajes.length === 0" class="text-secondary mb-3">
+      No hay puntos registrados aún
+    </h4>
   </div>
 </div>

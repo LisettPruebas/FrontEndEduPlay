@@ -16,7 +16,7 @@ export class Input {
 
 guardarNombre(nombre: string): void {
     this.puntajeservice.setNombreJugador(nombre.trim());
-    console.log('Nombre guardado:', this.puntajeservice.getNombreJugador());
+   // console.log('Nombre guardado:', this.puntajeservice.getNombreJugador());
   }
 
 }

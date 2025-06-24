@@ -22,21 +22,16 @@ constructor(public auth: Auth, private router: Router, private http: HttpClient)
     this.router.navigate(['/login']);
   }
   
-  esAdmin(): boolean {
-    return this.auth.isLoggedIn() && this.auth.getUser() === 'admin';
- }
-
-  mostrarBotonReiniciar(): boolean {
-    return this.auth.isLoggedIn() && this.auth.getUser() === 'admin' && this.router.url === '/ranking';
-  }
-
   reiniciarRanking() {
-  if (confirm('¿Estás seguro de que deseas reiniciar el ranking?')) {
-    this.http.delete('http://127.0.0.1:3000/score/reiniciar')
-      .subscribe({
-        next: () => alert('Ranking reiniciado correctamente'),
-        error: () => alert('Hubo un error al reiniciar el ranking')
-      });
+    if (confirm('¿Estás seguro de que deseas reiniciar el ranking?')) {
+      this.http.delete('http://127.0.0.1:3000/score/reiniciar')
+        .subscribe({
+          next: () => {
+            alert('Ranking reiniciado correctamente');
+            window.location.reload();
+          },
+          error: () => alert('Hubo un error al reiniciar el ranking')
+        });
     }
   }
 

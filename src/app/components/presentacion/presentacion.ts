@@ -12,7 +12,7 @@ export class Presentacion {
   integrantes = [
     { nombre: 'Claudia', rol: 'Frontend & Backend', foto: '004.png' },
     { nombre: 'Juan', rol: 'Frontend & Backend', foto: 'rosa.jpg' },
-    { nombre: 'Lisset', rol: 'Frontend & Backend', foto: 'perro.jpg' },
+    { nombre: 'Lisett', rol: 'Frontend & Backend', foto: 'perro.jpg' },
     { nombre: 'Jean', rol: 'Frontend & Backend', foto: 'yoshi2.jpg' }
   ];
 }

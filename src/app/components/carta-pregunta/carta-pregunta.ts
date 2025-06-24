@@ -40,7 +40,7 @@ export class CartaPreguntaComponent implements OnInit {
     let res: boolean = false;
     try {
       this.pregunta = await firstValueFrom(this.http.get<Pregunta>('http://localhost:3000/pregunta/traer'));
-      console.log('Pregunta:', this.pregunta);
+      //console.log('Pregunta:', this.pregunta);
       res = true;
     } catch (error) {
       console.error('Error al obtener la pregunta:', error);
@@ -59,7 +59,7 @@ export class CartaPreguntaComponent implements OnInit {
     this.contadorCorrectas++;
     this.puntosTotales += 10; 
     this.mensajeFeedback = 'Correcta';
-    console.log(this.puntosTotales)
+    //console.log(this.puntosTotales)
   } else {
     this.mensajeFeedback = 'Incorrecta';
   }
@@ -103,7 +103,7 @@ export class CartaPreguntaComponent implements OnInit {
           body
         )
       );
-      console.log('Puntos:', this.resultado.puntaje);
+     // console.log('Puntos:', this.resultado.puntaje);
       res = true;
     
     } catch (error) {

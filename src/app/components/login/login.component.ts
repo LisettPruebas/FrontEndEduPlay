@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/auth/login-service';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Auth } from '../../services/auth/auth';
 
 @Component({
