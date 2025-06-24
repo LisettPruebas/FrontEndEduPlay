@@ -6,7 +6,7 @@
     <ul class="list-group list-group-flush">
       <li *ngFor="let opcion of pregunta.opciones" class="list-group-item">
         <button
-          class="btn btn-outline-primary w-100"
+          class="btn sta w-100"
           [ngClass]="{'correcta': opcion === pregunta.respuestaCorrecta && respuestaUsuario !== ''}"
           (click)="verificarRespuesta(opcion)"
           [disabled]="respuestaUsuario !== ''"

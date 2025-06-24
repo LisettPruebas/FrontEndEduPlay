@@ -4,6 +4,8 @@ import { Pregunta } from '../../modelos/pregunta.model';
 import { PuntosResultado } from '../../modelos/puntosResultado.model';
 import { Router } from '@angular/router';
 import { Puntaje } from '../../services/puntaje/puntaje';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { Puntaje } from '../../services/puntaje/puntaje';
 
 export class CartaPreguntaComponent implements OnInit {
 
-  constructor(private router: Router, private puntajeservices: Puntaje) {}
+  constructor(private router: Router, private puntajeservices: Puntaje, private http: HttpClient) {}
   
   pregunta!: Pregunta;
 
@@ -37,8 +39,7 @@ export class CartaPreguntaComponent implements OnInit {
   async obtenerPregunta(): Promise<boolean> {
     let res: boolean = false;
     try {
-      const response = await fetch('http://localhost:3000/pregunta/traer');
-      this.pregunta = await response.json();
+      this.pregunta = await firstValueFrom(this.http.get<Pregunta>('http://localhost:3000/pregunta/traer'));
       console.log('Pregunta:', this.pregunta);
       res = true;
     } catch (error) {
@@ -88,23 +89,23 @@ export class CartaPreguntaComponent implements OnInit {
 
 
   
-   async enviarPuntos(): Promise<Boolean> {
-    let res : Boolean = false;
+   async enviarPuntos(): Promise<boolean> {
+    let res = false;
+    const body = {
+      puntos: this.contadorCorrectas * 10,
+      nombre: this.puntajeservices.getNombreJugador(),
+    };
+
     try {
-      const response = await fetch('http://localhost:3000/pregunta/puntuacion', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ puntos: this.contadorCorrectas * 10,
-          nombre: this.puntajeservices.getNombreJugador()
-         }), 
-      });
-
-      this.resultado = await response.json();
+      this.resultado = await firstValueFrom(
+        this.http.post<PuntosResultado>(
+          'http://localhost:3000/pregunta/puntuacion',
+          body
+        )
+      );
+      console.log('Puntos:', this.resultado.puntaje);
       res = true;
-      console.log('puntos:', this.resultado.puntaje);
-
+    
     } catch (error) {
       console.error('Error al guardar los puntos:', error);
     }
