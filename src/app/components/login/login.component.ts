@@ -29,7 +29,6 @@ export class LoginComponent {
     const credenciales = {username: this.username, password:this.password};
     this.loginService.login(credenciales).subscribe( response => {
       this.auth.setLoginState(this.username);
-      alert(`hola ${this.username}`)
       this.router.navigate(['/admin']);
     },
     error =>{
