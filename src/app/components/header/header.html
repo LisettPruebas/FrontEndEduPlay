@@ -21,6 +21,7 @@
       </ul>
 
       <div class="d-flex">
+        <button *ngIf="mostrarBotonReiniciar()" class="btn btn-danger me-2" (click)="reiniciarRanking()">Reiniciar Ranking</button>
         <button *ngIf="!auth.isLoggedIn()" class="btn btn-outline-light me-2" [routerLink]="['/login']">Login</button>
         <button *ngIf="auth.isLoggedIn()" class="btn btn-light" (click)="logout()">Salir</button>
         <button *ngIf="esAdmin()" class="btn btn-warning" [routerLink]="['/admin']">Admin Panel</button>
