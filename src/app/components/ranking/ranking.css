@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  background-color: #F7EB33;
+  min-height: 100vh;
+  padding-top: 1px;
+}
 .ranking-container {
   max-width: 600px;
   margin: 0 auto;
