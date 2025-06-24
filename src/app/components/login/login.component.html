@@ -18,9 +18,9 @@
                     required>
                 <label>Contraseña</label>
             </div>
-            <p *ngIf="mensaje" style="color: red;">
+                <div *ngIf="mensaje" class="alert alert-danger mt-2" role="alert">
                 {{ mensaje }}
-            </p>
+            </div>
             <button class="btn btn-danger w-100 py-2" type="submit">Iniciar sesion</button>
         </form>
     </div>
