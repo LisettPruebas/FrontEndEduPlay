@@ -4,6 +4,10 @@
   min-height: 100vh;
   padding-top: 1px;
 }
+/* 
+¿Qué es :host en Angular?
+:host es un selector especial que se refiere al elemento raíz del componente.
+Es como decir: "aplicá este estilo al <app-carta-pregunta> (o el selector que sea)". */
 
 .card {
   background-color: #fff;
