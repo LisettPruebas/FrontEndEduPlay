@@ -1,17 +1,25 @@
 <div *ngIf="pregunta" class="card">
+  <!-- Usa *ngIf para mostrar:
+  La tarjeta con la pregunta si pregunta tiene datos. -->
   <div class="card-body">
      <p>{{contadorTotal}}/10</p>
     <h5 class="card-title">{{ pregunta.pregunta }}</h5>
+    <!-- Muestra en qué número va (ej: 3/10).Luego muestra la pregunta actual. -->
 
     <ul class="list-group list-group-flush">
       <li *ngFor="let opcion of pregunta.opciones" class="list-group-item">
+        <!-- Usa *ngFor para recorrer las opciones de la pregunta.
+        Cada opción se muestra como un botón. -->
         <button
           class="btn sta w-100"
-          [ngClass]="{'correcta': opcion === pregunta.respuestaCorrecta && respuestaUsuario !== ''}"
+          [ngClass]="{'correcta': opcion === pregunta.respuestaCorrecta && respuestaUsuario !== ''}" 
           (click)="verificarRespuesta(opcion)"
           [disabled]="respuestaUsuario !== ''"
         >
           {{ opcion }}
+          <!-- ejecuta verificarRespuesta(opcion) cuando se hace clic. Se desactiva si el usuario ya respondió.
+          Se le agrega la clase CSS 'correcta' si:
+          Esa opción es la correcta, y el usuario ya respondió. -->
         </button>
       </li>
     </ul>
@@ -25,12 +33,32 @@
       >
         {{ mensajeFeedback }}
       </p>
+      <!-- solo aparece si el usuario ya eligió una respuesta.
+      Muestra "Correcta" en verde o "Incorrecta" en rojo, dependiendo del valor booleano de esCorrecta. -->
     </div>
   </div>
 </div>
+
+<!-- Ejemplo visual (imaginario)
+3/10
+¿Quién escribió Cien años de soledad?
+
+[✔] Gabriel García Márquez
+[ ] Pablo Neruda
+[ ] Mario Vargas Llosa
+[ ] Julio Cortázar
+
+✅ Correcta -->
 
 <div *ngIf="!pregunta">
   <p>Cargando pregunta...</p>
 </div>
 
 
+<!-- Usar *ngIf en Angular es una forma de controlar si algo se muestra o no en el HTML, dependiendo de una condición. Es muy útil y común. Vamos con una explicación sencilla:
+
+🔍 ¿Qué es *ngIf?
+*ngIf es una directiva estructural de Angular. Sirve para agregar o quitar elementos del DOM según una condición.
+
+¿Qué pasaría si no lo usás?
+Si no usás *ngIf, el HTML intentará acceder a pregunta.pregunta o pregunta.opciones cuando pregunta todavía es undefined o null, y te tira un error. -->

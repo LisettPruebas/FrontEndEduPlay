@@ -14,6 +14,7 @@ export interface Pregunta {
   opciones: string[];
   respuestaCorrecta: string;
 }
+//esto esta mal, tendria que haber usado la interface de models
 
 @Injectable({
   providedIn: 'root'
