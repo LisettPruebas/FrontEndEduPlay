@@ -48,7 +48,10 @@ export class PreguntasService {
 
 // Un Observable es una forma de manejar datos asincrónicos. Es como una fuente de datos que puede emitir uno o varios valores con el tiempo. Y Usamos Observables principalmente porque las operaciones con el backend (y otras) son asincrónicas.
 // ¿Por qué los métodos GET (como http.get) devuelven un Observable?
-// Porque cuando hacés una petición HTTP, no sabés cuándo va a responder el servidor. Podría tardar 1 segundo, 5, o fallar.Entonces Angular te da un Observable para que vos:
+// Se devuelve un Observable en actualizarPregunta(...) porque:
+// HttpClient devuelve Observable por defecto.Angular está diseñado para trabajar con RxJS.
+// Si estás en un componente y querés usar async/await, ahí sí podés transformar el Observable en una Promise con firstValueFrom(...), pero no en el servicio directamente, porque perderías las ventajas reactivas.
+// ademas, Porque cuando hacés una petición HTTP, no sabés cuándo va a responder el servidor. Podría tardar 1 segundo, 5, o fallar.Entonces Angular te da un Observable para que vos:
 // Te suscribas a la respuesta.Con .subscribe(...), te "anotás" para que te avise cuando llegue la respuesta y Cuando el servidor responde, se ejecuta lo que está dentro del subscribe.
 
 // obtenerPreguntas(): Observable<Pregunta[]> {

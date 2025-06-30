@@ -16,5 +16,8 @@ export const routes: Routes = [
     {path: "admin", component: ListarPreguntas},
     {path: "presentacion", component: Presentacion},
     {path: 'admin', component: ListarPreguntas, canActivate: [AdminGuard] },
-    { path: 'ranking', component: Ranking }
+    // Cuando un usuario intenta entrar a /admin, Angular ejecuta el método canActivate() de la clase AdminGuard.
+    // Si canActivate() devuelve true, se muestra el componente ListarPreguntas.
+    // Si devuelve false, Angular bloquea el acceso y normalmente redirige a otra ruta (como /login).
+    {path: 'ranking', component: Ranking }
 ];

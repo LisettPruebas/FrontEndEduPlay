@@ -36,3 +36,26 @@ constructor(public auth: Auth, private router: Router, private http: HttpClient)
   }
 
 }
+
+//  ¿Qué es lo que no está tan bien?
+// El método reiniciarRanking() está haciendo una llamada HTTP directamente en el componente, usando HttpClient. Esto viola el principio de separación de responsabilidades, porque el componente debería mostrar y manejar la interfaz, no encargarse de detalles técnicos como hacer peticiones a la API.
+
+//esto en un service:
+//  reiniciarRanking(): Observable<any> {
+//     return this.http.delete(`${this.baseUrl}/reiniciar`);
+//   }
+// }
+
+//esto en el componente:
+// reiniciarRanking() {
+//     if (confirm('¿Estás seguro de que deseas reiniciar el ranking?')) {
+//       this.rankingService.reiniciarRanking().subscribe({
+//         next: () => {
+//           alert('Ranking reiniciado correctamente');
+//           window.location.reload();
+//         },
+//         error: () => alert('Hubo un error al reiniciar el ranking')
+//       });
+//     }
+//   }
+// }
