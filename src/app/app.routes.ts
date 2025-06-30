@@ -13,7 +13,7 @@ export const routes: Routes = [
     {path:"login",component: LoginComponent},
     {path: "preguntas", component: CartaPreguntaComponent},
     {path: "resultados", component: Results},
-    {path: "admin", component: ListarPreguntas},
+    {path: "admin", component: ListarPreguntas}, // esta de mas
     {path: "presentacion", component: Presentacion},
     {path: 'admin', component: ListarPreguntas, canActivate: [AdminGuard] },
     // Cuando un usuario intenta entrar a /admin, Angular ejecuta el método canActivate() de la clase AdminGuard.
