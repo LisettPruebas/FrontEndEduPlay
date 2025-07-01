@@ -1,3 +1,5 @@
+<!-- Este código es una plantilla (template) de Angular que implementa un formulario reactivo para crear o editar preguntas con opciones, como en un juego de preguntas (tipo “Preguntados”). -->
+
 <div class="contenedor-principal">
 
   <form [formGroup]="formulario" (ngSubmit)="crearPregunta()" class="formulario">
@@ -16,7 +18,46 @@
         <input [id]="'opcion' + i" type="text" class="form-control" [formControlName]="i" required />
       </div>
     </div>
-    <!-- Esto recorre el FormArray opciones, mostrando un campo de texto por cada una. -->
+     <!-- formArrayName="opciones": conecta con un FormArray llamado opciones en el FormGroup.
+     *ngFor: recorre cada opción (cada control en el array) y crea un input para ella.
+     [formControlName]="i": asocia cada input con su índice dentro del array. -->
+<!-- 
+     [for]="'opcion' + i"
+      Es una vinculación de Angular (entre corchetes): [for] significa que el valor se evalúa como expresión de JavaScript.
+
+      'opcion' + i concatena la palabra "opcion" con el número de índice i.
+
+      Si i = 0, entonces for="opcion0" → esto enlaza el <label> con el <input> con ese mismo ID.
+
+      ¿Para qué? Para accesibilidad: si hacés clic en el texto del label, activa el input correspondiente. -->
+
+      <!-- [formControlName]="i"
+      Acá viene lo importante de los formularios reactivos:
+      i es el índice del campo dentro del FormArray.
+      Al poner [formControlName]="i", le estás diciendo al formulario:
+      “Este input se vincula al control número i del array de opciones”.
+      Así, Angular puede leer y actualizar automáticamente el valor escrito en ese campo. -->
+
+      <!-- ¿Qué hace exactamente?
+        Es Interpolación de Angular:
+        {{ i + 1 }}
+        i es el índice de la opción actual dentro del *ngFor.
+        Angular lo reemplaza con su valor numérico cuando renderiza el HTML.
+        i + 1 simplemente suma 1 al índice para que las opciones empiecen en 1 en lugar de 0.
+
+        Ejemplo práctico
+        Supongamos que tenés un array con 3 opciones, así:
+        opciones = ['Azul', 'Rojo', 'Verde'];
+        Cuando el HTML se renderiza, verías:
+        <label for="opcion0">Opción 1</label>
+        <label for="opcion1">Opción 2</label>
+        <label for="opcion2">Opción 3</label>
+        Aunque internamente los controles tienen índices 0, 1, 2...
+
+        Vos le mostrás al usuario Opción 1, Opción 2, Opción 3, que es más natural.
+
+        ✅ ¿Por qué se usa así?
+        Porque los arrays en programación empiezan en 0...pero los humanos contamos desde el 1, así que se usa i + 1 para mostrarlo de forma amigable. -->
 
     <div class="mb-3">
       <label for="respuestaCorrecta" class="form-label">Respuesta Correcta</label>
@@ -49,3 +90,17 @@
     </div>
   </div>
 
+<!-- Es reactivo porque:
+Usás [formGroup]="formulario" → Eso declara un FormGroup creado desde el TypeScript.
+
+Usás formControlName y formArrayName, que son directivas de formularios reactivos.
+
+Todo el control del formulario (campos, validaciones, envíos) se hace desde el archivo .ts, no solo desde la plantilla HTML.
+
+✅ 2. Es dinámico porque:
+Tenés un FormArray llamado opciones que puede tener cantidad variable de campos.
+
+Ese array se recorre con *ngFor, lo que significa que podés agregar, editar o eliminar inputs en tiempo real.
+
+¿Qué es un formulario dinámico?
+Un formulario dinámico es aquel que puede agregar, eliminar o modificar sus campos según ciertas condiciones. Todo esto ocurre mientras el usuario está usando la app, no estático en el HTML. -->

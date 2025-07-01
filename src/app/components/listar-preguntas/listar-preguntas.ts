@@ -25,6 +25,11 @@ export class ListarPreguntas implements OnInit {
   preguntas: Pregunta[] = [];
 
   formulario!: FormGroup; //el grupo reactivo para crear/editar preguntas.
+  //formulario: es el nombre de la propiedad que va a contener el formulario reactivo.
+
+  // !:: es el operador de aserción de no nulo. Le dice a TypeScript:
+  // "Confía en mí, esta propiedad va a ser inicializada antes de ser usada, aunque ahora parezca undefined".
+  // FormGroup: es una clase de Angular que representa un grupo de controles de formulario reactivos.
 
   preguntaEnEdicion: Pregunta | null = null; // guarda si estás editando una pregunta (null si creas nueva).
 
