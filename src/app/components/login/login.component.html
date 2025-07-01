@@ -18,6 +18,12 @@
                     required>
                 <label>Contraseña</label>
             </div>
+            <!-- Inputs con binding bidireccional [(ngModel)]
+            <input type="text" ... name="username" [(ngModel)]="username" required>
+            El input de texto para el usuario está ligado a la variable username del componente.
+            Lo mismo para la contraseña con password.
+
+            [(ngModel)] es two-way binding: cuando el usuario escribe, se actualiza la variable y viceversa. -->
                 <div *ngIf="mensaje" class="alert alert-danger mt-2" role="alert">
                 {{ mensaje }}
             </div>
@@ -25,3 +31,8 @@
         </form>
     </div>
 </div>
+
+<!-- [(ngModel)]="username"	Conecta el input con la variable username en TS
+(ngSubmit)="onSubmit()"	Llama a la función onSubmit() al enviar el formulario
+*ngIf="mensaje"	Muestra el mensaje de error si existe
+Botón submit	Envía el formulario para procesar el login -->

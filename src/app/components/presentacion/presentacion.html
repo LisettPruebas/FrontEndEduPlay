@@ -23,6 +23,19 @@
         <h5 class="fw-semibold">{{ integrante.nombre }}</h5>
         <p class="text-muted">{{ integrante.rol }}</p>
       </div>
+      <!-- *ngFor="let integrante of integrantes":
+      Es una directiva estructural que itera sobre un array llamado integrantes definido en el componente Angular.
+      Por cada integrante crea un div con la info.
+
+      Dentro del ciclo:
+
+      Muestra la foto con src dinámico [src]="integrante.foto".
+
+      El atributo alt usa interpolación para la accesibilidad.
+
+      Muestra el nombre y el rol con interpolación {{ integrante.nombre }}, {{ integrante.rol }}. -->
+
+
     </div>
   </section>
 </div>

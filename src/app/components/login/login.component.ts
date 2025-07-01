@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; //FormsModule es un módulo de Angular que contiene funcionalidades para trabajar con formularios basados en plantillas (template-driven forms).
 import { LoginService } from '../../services/auth/login-service';
 import { Router } from '@angular/router';
 import { Auth } from '../../services/auth/auth';

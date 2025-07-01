@@ -32,6 +32,24 @@ getUser() : string | null {
   return this.user;
   //Devuelve el nombre del usuario guardado en memoria (⚠️ pero no lo lee desde localStorage si recargaste la página).
 }
+
+  // getUser(): string | null
+  // Es un método que devuelve el valor de this.user.
+
+  // El tipo string | null indica que puede devolver un string (por ejemplo, el nombre del usuario) o null si no hay usuario guardado.
+
+  // El comentario advierte que este método devuelve solo el valor que está almacenado en memoria, es decir, en la variable this.user.
+
+  // Si la página se recarga, y no hay un mecanismo para recuperar el usuario desde el almacenamiento persistente (como localStorage o sessionStorage), this.user será null o undefined.
+
+  // ¿Qué significa eso en práctica?
+  // Si guardaste el usuario en la variable this.user mientras la app está activa, getUser() lo devuelve sin problema.
+
+  // Pero si recargás la página, la variable this.user se pierde (porque se resetea la instancia de la clase).
+
+  // Entonces, para mantener al usuario logueado tras recarga, necesitás guardar el usuario en un lugar persistente (como localStorage) y cargarlo al iniciar la app.
+
+
   constructor() { }
 }
 

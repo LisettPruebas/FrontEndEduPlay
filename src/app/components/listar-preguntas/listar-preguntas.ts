@@ -164,18 +164,33 @@ export class ListarPreguntas implements OnInit {
     // Crea una pregunta nueva tomando los valores que el usuario cargó en el formulario.
     // Tiene tres campos: pregunta, opciones[] (4 en total), y la respuestaCorrecta.
 
-    const opcionesValidas = nuevaPregunta.opciones.every(opt => opt.trim() !== '');
+    const opcionesValidas = nuevaPregunta.opciones.every(opt => opt.trim() !== ''); //es un método de los arrays que verifica que todos los elementos cumplan una condición. opt.trim() elimina los espacios al inicio y al final.
     if (!opcionesValidas) {
       alert('Todas las opciones deben estar completas');
       return;
     }
 
-    const opcionesUnicas = new Set(nuevaPregunta.opciones.map(opt => opt.trim().toLowerCase()));
+    const opcionesUnicas = new Set(nuevaPregunta.opciones.map(opt => opt.trim().toLowerCase())); 
+    // Recorre todas las opciones.
+
+    // A cada opción le aplica:
+
+    // .trim() → quita espacios en blanco al principio y al final.
+
+    // .toLowerCase() → convierte a minúsculas (para evitar que "Rojo" y "rojo" se consideren diferentes).
     if (opcionesUnicas.size !== nuevaPregunta.opciones.length) {
       alert('Las opciones deben ser distintas entre sí');
       return;
     }
     // usa un Set para ver si hay opciones repetidas. Si hay duplicadas (por ejemplo: "perro" y "Perro"), se lanza un error y se corta.
+    // Ejemplo práctico:
+    // nuevaPregunta.opciones = ['Rojo', '  rojo ', 'Verde'];
+    // .trim().toLowerCase() → ['rojo', 'rojo', 'verde']
+
+    // El Set solo guarda ['rojo', 'verde'] → size = 2
+
+    // Pero el array original tenía 3 elementos.
+    // 🔴 Entonces detecta duplicado → muestra alerta.
 
     const respuestaCoincide = nuevaPregunta.opciones
       .map(opt => opt.trim().toLowerCase())
@@ -196,6 +211,7 @@ export class ListarPreguntas implements OnInit {
 
         if (this.preguntaEnEdicion) {
           const index = this.preguntas.findIndex(p => p._id === this.preguntaEnEdicion!._id);
+          // método findIndex() en JavaScript se usa para encontrar el índice del primer elemento de un array que cumpla una condición específica.
           if (index !== -1) {
             this.preguntas[index] = { ...this.preguntaEnEdicion, ...nuevaPregunta };
           }
@@ -218,6 +234,7 @@ export class ListarPreguntas implements OnInit {
     this.preguntaEnEdicion = pregunta;
 
     this.formulario.patchValue({
+      //con patchValue, cargás los valores principales de la pregunta al formulario:
       pregunta: pregunta.pregunta,
       respuestaCorrecta: pregunta.respuestaCorrecta
     });
@@ -227,6 +244,18 @@ export class ListarPreguntas implements OnInit {
       this.opciones.push(this.fb.control(opcion, Validators.required));
     }
   }
+  // Esto elimina todas las opciones actuales del FormArray opciones, una por una.
+  // Es como decir: "limpia todo antes de poner las nuevas".
+
+
+  // for (const opcion of pregunta.opciones) {
+  //   this.opciones.push(this.fb.control(opcion, Validators.required));
+  // }
+  // Ahora se recorren las opciones de la pregunta original y se agregan al FormArray usando FormBuilder (this.fb):
+
+  // Cada opción es un FormControl individual.
+
+  // Se agrega con validación: Validators.required → no se puede dejar vacío.
 
   eliminar(id?: string) {
     if (!id) {

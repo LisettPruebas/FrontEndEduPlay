@@ -4,6 +4,11 @@ import { CanActivate, Router } from '@angular/router';
 // Esta línea importa dos cosas del paquete @angular/router, que es la librería oficial de Angular para manejar rutas:
 // CanActivate
 // Es una interfaz que define un contrato para los route guards que controlan si una ruta puede ser activada o no. Para usar CanActivate, tu clase debe implementar un método canActivate() que devuelve boolean o un observable/promise que resuelva en boolean.
+
+// ¿Qué son los Route Guards?
+// Son mecanismos que Angular ofrece para controlar el acceso a rutas específicas dentro de tu aplicación.
+
+
 import { Auth } from '../../services/auth/auth';
 
 
