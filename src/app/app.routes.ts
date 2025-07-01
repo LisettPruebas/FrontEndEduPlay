@@ -21,3 +21,22 @@ export const routes: Routes = [
     // Si devuelve false, Angular bloquea el acceso y normalmente redirige a otra ruta (como /login).
     {path: 'ranking', component: Ranking }
 ];
+
+// ¿Qué son las routes en Angular?
+// Las routes (rutas) son las direcciones internas de tu aplicación de Angular. Te permiten navegar entre componentes sin recargar la página. Es lo que hace que una Single Page Application (SPA) funcione como si tuviera "múltiples páginas".
+
+// ¿Por qué son necesarias?
+// Porque Angular es una SPA (una sola página), pero muchas veces querés que parezca que tenés varias "pantallas":
+
+// /login → Página de inicio de sesión
+// /registro → Registro
+// /juego → Pantalla del juego
+// /admin → Administración de preguntas
+
+// Las routes permiten esto, mostrando el componente correcto según la URL sin recargar el sitio completo.
+
+// ¿Cómo navegar entre rutas?
+// Desde código:
+// this.router.navigate(['/juego']);
+// Desde HTML:
+// <a routerLink="/juego">Ir al juego</a>

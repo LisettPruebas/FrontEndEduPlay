@@ -8,6 +8,9 @@ import { Observable } from 'rxjs'
 // RxJS (Reactive Extensions for JavaScript) es una biblioteca de programación reactiva para JavaScript.
 // ✨ Sirve para trabajar con datos asincrónicos y eventos como si fueran flujos de datos (streams). Es la base de los Observables en Angular.
 
+// ¿Qué es programación reactiva?
+// La programación reactiva es un paradigma de programación orientado a manejar flujos de datos asíncronos y eventos de forma declarativa.
+
 export interface Pregunta {
   _id?: string; //ID de la pregunta (opcional).
   pregunta: string;
